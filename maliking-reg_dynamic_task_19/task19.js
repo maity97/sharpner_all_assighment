@@ -1,10 +1,12 @@
-axios.get('https://crudcrud.com/api/096c8231cd90480eab9f299c0c14894d/appdata').then((res)=>
- {res.data.forEach((ele)=>user_detailsonscreen(ele))}).catch((err)=>console.log(err))
+axios.get('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata').then((res)=>
+ {res.data.forEach((ele)=>user_detailsonscreen(ele))}).catch((err)=>{console.log(err);
+
+})
 //go to yhe form by id
 let form=document.getElementById('addForm')
 //if i submit what i wan to do
-form.addEventListener('submit',storelocalstorage)
-function storelocalstorage(e)
+form.addEventListener('submit',storeIncloud)
+function storeIncloud(e)
 {
     e.preventDefault()
     //get value form input
@@ -19,7 +21,7 @@ let user_details={
 
 };
 //save to cloud
-axios.post('https://crudcrud.com/api/096c8231cd90480eab9f299c0c14894d/appdata',user_details).then((res)=>{
+axios.post('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata',user_details).then((res)=>{
   user_detailsonscreen(res.data)
   console.log(res)
 }).catch((err)=>console.log(err))
