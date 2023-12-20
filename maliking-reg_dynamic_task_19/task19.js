@@ -4,6 +4,8 @@ window.addEventListener('DOMContentLoaded',()=>{
  
  })
 })
+//we need dom contentloaded because domcontent loaded means your hole html code loaded if you donot use domcontentloaded
+// your js code will run before ul loaded and yoy will get an error
 
 //go to yhe form by id
 let form=document.getElementById('addForm')
@@ -46,7 +48,16 @@ axios.post('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata',u
    //button callback function
     btn.onclick =()=>
     {
-        localStorage.removeItem(user_details.Email);
+      axios.get('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata').then((res)=>{
+        for(let i=0;i<res.data.length;i++)
+        {
+          if(res.data[i].Email===user_details.Email)
+          {    let id=res.data[i]._id
+            
+            axios.delete(`https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata/${id}`)
+          }
+        }
+      })
         parentelement.removeChild(childelement);
     }
     childelement.appendChild(btn)
