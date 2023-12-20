@@ -1,7 +1,10 @@
-axios.get('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata').then((res)=>
- {res.data.forEach((ele)=>user_detailsonscreen(ele))}).catch((err)=>{console.log(err);
-
+window.addEventListener('DOMContentLoaded',()=>{
+  axios.get('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata').then((res)=>
+  {res.data.forEach((ele)=>user_detailsonscreen(ele))}).catch((err)=>{console.log(err);
+ 
+ })
 })
+
 //go to yhe form by id
 let form=document.getElementById('addForm')
 //if i submit what i wan to do
