@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded',()=>{
-  axios.get('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata').then((res)=>
+  axios.get('https://crudcrud.com/api/232f7ceb92aa4981b96538f259fb3a6f/appdata').then((res)=>
   {res.data.forEach((ele)=>user_detailsonscreen(ele))}).catch((err)=>{console.log(err);
  
  })
@@ -26,7 +26,7 @@ let user_details={
 
 };
 //save to cloud
-axios.post('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata',user_details).then((res)=>{
+axios.post('https://crudcrud.com/api/232f7ceb92aa4981b96538f259fb3a6f/appdata',user_details).then((res)=>{
   user_detailsonscreen(res.data)
   console.log(res)
 }).catch((err)=>console.log(err))
@@ -48,13 +48,13 @@ axios.post('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata',u
    //button callback function
     btn.onclick =()=>
     {
-      axios.get('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata').then((res)=>{
+      axios.get('https://crudcrud.com/api/232f7ceb92aa4981b96538f259fb3a6f/appdata').then((res)=>{
         for(let i=0;i<res.data.length;i++)
         {
           if(res.data[i].Email===user_details.Email)
           {    let id=res.data[i]._id
             
-            axios.delete(`https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata/${id}`)
+            axios.delete(`https://crudcrud.com/api/232f7ceb92aa4981b96538f259fb3a6f/appdata/${id}`)
           }
         }
       })
@@ -70,8 +70,21 @@ axios.post('https://crudcrud.com/api/91cb326e49454ecd98970c006c6fb618/appdata',u
          document.getElementById('name').value=user_details.Name
     document.getElementById('email').value=user_details.Email
     document.getElementById('phno').value=user_details.PhNo
-        localStorage.removeItem(user_details.Email);
-        parentelement.removeChild(childelement);
+    parentelement.removeChild(childelement)
+    axios.get('https://crudcrud.com/api/232f7ceb92aa4981b96538f259fb3a6f/appdata').then((res)=>{
+      for(let i=0;i<res.data.length;i++)
+      {
+        if(res.data[i].Email===user_details.Email)
+        {    let id=res.data[i]._id
+          
+          axios.delete(`https://crudcrud.com/api/232f7ceb92aa4981b96538f259fb3a6f/appdata/${id}`,{
+            
+          
+          }).then((data)=>console.log(data))
+        }
+      }
+    })
+        
     }
     childelement.appendChild(editbtn)
 
