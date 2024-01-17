@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded',()=>{
     axios.get('https://crudcrud.com/api/bb533ff6e4bb4105b2a2323b829335b1/studentdata').then((res)=>{
+            document.getElementById('count').value=res.data.length
         res.data.forEach(element => {
             show_students_details_onscreen(element)
         });
@@ -7,15 +8,16 @@ window.addEventListener('DOMContentLoaded',()=>{
         console.log(err)
     })
 })
-let count=0
 
 
+ 
+ 
 let form=document.getElementById('collect')
 form.addEventListener('submit',store_data_incloud)
 function store_data_incloud(e){
+    
     e.preventDefault()
     
-    document.getElementById('count').value=count
     let name=document.getElementById('name').value;
     let mobile=document.getElementById('mobile').value;
     let address=document.getElementById('address').value;
@@ -26,7 +28,7 @@ function store_data_incloud(e){
     };
     
     axios.post("https://crudcrud.com/api/bb533ff6e4bb4105b2a2323b829335b1/studentdata",student_details).then((res)=>{
-        count++
+        document.getElementById('count').value++
     show_students_details_onscreen(res.data)
     
     
@@ -35,7 +37,7 @@ function store_data_incloud(e){
 }
  function show_students_details_onscreen(student_details){
     
-    document.getElementById('count').value=count
+    
 
     let parentelement=document.getElementById('student')
     let childelement=document.createElement('li')
@@ -47,7 +49,10 @@ function store_data_incloud(e){
     childelement.appendChild(btn)
     btn.onclick=()=>{
         let id=btn.parentElement.id
-        axios.delete(`https://crudcrud.com/api/bb533ff6e4bb4105b2a2323b829335b1/studentdata/${id}`)
+        axios.delete(`https://crudcrud.com/api/bb533ff6e4bb4105b2a2323b829335b1/studentdata/${id}`).then((res)=>{
+            document.getElementById('count').value--
+        })
+
         parentelement.removeChild(childelement)
     }
     let editbtn=document.createElement('input')
@@ -60,6 +65,9 @@ function store_data_incloud(e){
         document.getElementById('address').value=student_details.address
         let id=editbtn.parentElement.id
         axios.delete(`https://crudcrud.com/api/bb533ff6e4bb4105b2a2323b829335b1/studentdata/${id}`)
+        then((res)=>{
+            document.getElementById('count').value--
+        })
         parentelement.removeChild(childelement)
     }
     parentelement.appendChild(childelement)
