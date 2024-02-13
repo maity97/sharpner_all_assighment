@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pasword keeper rest api project </title>
+    
+</head>
+
+<body>
+    <header>
+        <h1 >Password Keeper</h1>
+        <div class="di">
+            <div >
+                <label for="tp">Total Passwords:</label>
+                <input type="number" placeholder="0" id="tp" name="tp">
+            </div>
+
+            <div>
+                <label for="sh">Search</label>
+                <input type="text" id="sh" name="sh">
+            </div>
+        </div>
+    </header>
+    <form action="submit" id="form">
+        <div>
+            <label for="tl">Title</label>
+            <input type="text" id="tl" name="tl">
+        </div>
+        <div>
+            <label for="pd">Password</label>
+            <input type="password" id="pd" name="pd">
+        </div>
+        <input type="submit" value="Add">
+
+    </form>
+    <ul id="ct">All Passwords
+
+    </ul>
+    <script src="password.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+</body>
+
+</html>
